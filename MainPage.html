@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body,html{
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+
+        }
+        #app{
+            height:100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main{
+            flex: 1;
+        }
+
+        .footer{
+            width: auto;
+            height: auto;
+            display: flex;
+            flex-direction: row;
+            background-color: #e5e5e5;
+        }
+
+        .tab-item{
+            flex: 1;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tab-item p {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .tab-item p.active-p{
+            color:#12a0ef;
+        }
+
+        .tab-icon{
+            width: 28px;
+            height: 28px;
+            background-size: 28px;
+            align-items: center;
+        }
+
+        .header-content{
+            height:44px;
+            background-color: #e5e5e5;
+            line-height: 44px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="header" :style="`padding-top:${safeArea.top}px;`">
+            <div class="header-content">
+                <h3>{{tabTitle}}</h3>
+            </div>
+        </div>
+
+        <div class="main">
+            <br>
+            <br>
+            <br>
+            <br>
+            <!--button type="button" id = "scannerbutton" onclick="scanner()">Scanner</button>
+            <button type="button" id = "checkbutton" onclick="check()">DataCheck</button-->
+        </div>
+
+        <div class="footer" :style="`padding-bottom:${safeArea.bottom}px;`">
+            <div class="tab-item" v-for="(tab,index) in tabs" @click = "setCurrent(index)">
+                <div class="tab-icon" :style = "`background-image: url(./image/tab/icon_${tab.icon}_${currentIndex===index?'active':'normal'}.png);`"></div>
+                <p :class="currentIndex===index?'active-p':''">{{tab.name}}</p>
+            </div>
+        </div>
+    </div>
+    <!--div class = "header">Snakecup raw demo</div-->
+    <div class = "container">
+    </div>
+
+</body>
+<script type = "text/javascript" src="./script/vue.min.js"></script>
+<script type = "text/javascript">
+    var vm;
+    apiready = function(){
+        initVue();
+    };
+    function initVue(){
+        vm = new Vue({
+            el:'#app',
+            data:{
+                currentIndex:0,
+                tabs:[
+                    {
+                    name:'Main page',
+                    icon:'mainpage'
+                    },
+                    {
+                    name:'Promotion',
+                    icon:'promotion'
+                    }, 
+                    {
+                    name:'Schedule',
+                    icon:'schedule'
+                    }, 
+                    {
+                    name:'User',
+                    icon:'user'
+                    }
+                ],safeArea:{
+                    top:api.safeArea.top,
+                    bottom:api.safeArea.bottom
+                }
+
+            },
+            mounted:function(){
+                this.openFG();
+            },
+            methods:{
+                setCurrent:function(index){
+                    this.currentIndex = index;
+                    api.setFrameGroupIndex({
+                        name: 'home',
+                        index: index
+                    });
+                },
+                openFG:function(){
+                        var frames = this.tabs.map(function(tab){
+                            return{
+                                name:tab.icon,
+                                url:`./html/${tab.icon}.html`,
+                                bgColor: '#fff'
+                            }
+                        });
+                        //console.log(JSON.stringify(frames))
+                        api.openFrameGroup({
+                        name: 'home',
+                        rect: {
+                            marginTop:50+api.safeArea.top,
+                            marginBottom:60+api.safeArea.bottom
+                        },
+                        frames:[{
+                                    name: 'mainpage',
+                                    url: './html/mainpage.html',
+                                    bgColor: '#fff'
+                                },{
+                                    name: 'promotion',
+                                    url: './html/promotion.html',
+                                    bgColor: '#fff'
+                                },{
+                                    name: 'schedule',
+                                    url: './html/schedule.html',
+                                    bgColor: '#fff'
+                                },{
+                                    name: 'user',
+                                    url: './html/user.html',
+                                    bgColor: '#fff'
+                                },]
+                    }, function(ret, err) {
+                        vm.currentIndex = ret.index;
+                    });
+                }
+            },
+            computed:{
+                tabTitle:function(){
+                    return this.tabs[this.currentIndex].name;
+                }
+            }
+        })
+    }
+</script>
+<script src = "./script/ttst.js"></script>
+</html>

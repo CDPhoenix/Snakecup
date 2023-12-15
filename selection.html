@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="./LCalendar/css/LCalendar.css" /> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <button onclick="DateSubmit()">DateSubmit</button>
+    <input id = "demo1" type="text" readonly = "" placeholder="Input the date">
+    <script src="./LCalendar/js/LCalendar.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    var calendar = new LCalendar();
+    calendar.init({
+            'trigger': '#demo1', //标签id
+            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+            'minDate': (new Date().getFullYear()-3) + '-' + 1 + '-' + 1, //最小日期
+            'maxDate': (new Date().getFullYear()+3) + '-' + 12 + '-' + 31 //最大日期
+        });
+    var DateSubmit = function(){
+        var Date = document.getElementById("demo1").value
+        DateProcess(Date);
+    }
+    var DateProcess = function(Date){
+        Date = String(Date);
+        var year = new Array();
+        var month = new Array();
+        var day = new Array();
+        var flag = 0;
+        for(i = 0;i<Date.length;i++){
+            if(Date[i] == "-"){
+                flag = flag + 1;
+                continue;
+            }
+            if(flag == 0){
+                year.push(Date[i]);
+            }else if(flag == 1){
+                month.push(Date[i]);
+            }else if(flag == 2){
+                day.push(Date[i]);
+            }
+        }
+        year = year.join('');
+        month = month.join('');
+        day = day.join('');
+        Date = year + "." + month + "." + day
+        alert(Date);
+    }
+    </script>
+</body>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>Hello APP</title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css" />
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+        }
+
+        .wrap {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+        }
+
+        header {
+            height: 44px;
+            width: 100%;
+            text-align: center;
+            background-color: #81a9c3;
+            color: #fff;
+            line-height: 44px;
+            font-size: 20px;
+        }
+
+        .flex-1 {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+        }
+
+        footer {
+            height: 30px;
+            width: 100%;
+            background-color: #81a9c3;
+            color: white;
+            line-height: 30px;
+            text-align: center;
+        }
+
+        .header-content{
+            height:44px;
+            background-color: #e5e5e5;
+            line-height: 44px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        #timetable{
+            height:100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .sub-timetable{
+            height: 80px;
+            width: 400px;
+            background-color:#2575D4;
+        }
+        .map{
+            height: 300px;
+            width: 400px;
+            background-color:#666666;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-content">Schedule of collection trucks</div>
+    <div id="timetable">
+        <div class="sub-timetable">
+            <img src="../image/schedule/1.png" alt="logo">
+        </div>
+        <br>
+        <div class="sub-timetable">
+            <img src="../image/schedule/2.png" alt="logo">
+        </div>
+        <br>
+        <div class="sub-timetable">
+            <img src="../image/schedule/3.png" alt="logo">
+        </div>
+        <br>
+        <div>
+            <div class="header-content">
+                Your nearest trucks collection points-track01
+            </div>
+            <div class="map">
+                <img src="../image/schedule/map.png" alt="logo">
+            </div>
+
+        </div>
+    </div>
+</body>
+<script type = "text/javascript" src="./script/vue.min.js"></script>
+</html>

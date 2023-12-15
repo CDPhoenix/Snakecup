@@ -1,0 +1,44 @@
+body{
+    margin: 5px 10px;
+    background-color: rgb(127, 228, 127);
+    font-family: 'Times New Roman', Times, serif;
+}
+#box1{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 800;
+    font-style: italic;
+    background-color: seashell;
+    color: royalblue;
+    border: 5px blue solid;
+}
+.container{
+    width: 80%;
+    margin: auto;
+}
+#list1{
+    width: 80%;
+}
+button{
+    background-color: gray;
+}
+button:active{
+    background-color: white;
+}
+.block{
+    float: left;
+    width: 33.3%;
+    border: 1px solid white;
+    box-sizing: border-box;
+}
+#main-block{
+    float:left;
+    width: 70%;
+    border: 1px solid white;
+    box-sizing: border-box;
+}
+#side-bar{
+    float:right;
+    width: 30%;
+    border: 1px solid white;
+    box-sizing: border-box;
+}

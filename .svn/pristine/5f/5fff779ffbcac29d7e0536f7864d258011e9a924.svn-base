@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="./LCalendar/css/LCalendar.css" /> 
+        <meta charset="utf-8">
+        <script src="script/ttst.js"></script>
+    </head>
+    <body>
+        <br>
+        <br>
+        <br>
+        <br>
+        <form name = "MedicineInfo" action = "MainPage.html" method ="GET" >
+            Name:<input type="text" name = "Name" id = "MedName">
+            <button type = "button" onclick="ScanningName()">Scann the Name</button><br>
+            Expiredate: <input id = "demo1" name = "Expiredate" type="text" readonly = "" placeholder="Input the date">
+            <script src="./LCalendar/js/LCalendar.js" type="text/javascript"></script>
+            <!--button onclick="DateSubmit()">DateSubmit</button--><br>        
+            <input name = "Submit" type="button" value = "Submit" onclick="datasubmit()"/>
+            <button type="button" id = "returnbutton" onclick="returnback()">Return</button>
+        </form>
+    </body>
+<script src = "./script/ttst.js"></script>
+<script type = "text/javascript">
+    var returnback = function(){
+        apiready = function(){
+            api.closeWin({//关闭提交表单窗口
+            name:"datasubmit"    
+            });
+        }
+    }
+    var calendar = new LCalendar();
+    calendar.init({
+            'trigger': '#demo1', //标签id
+            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+            'minDate': (new Date().getFullYear()-3) + '-' + 1 + '-' + 1, //最小日期
+            'maxDate': (new Date().getFullYear()+3) + '-' + 12 + '-' + 31 //最大日期
+        });
+    var DateSubmit = function(){
+        var Date = document.getElementById("demo1").value
+        DateProcess(Date);
+    }
+</script>
+</html>

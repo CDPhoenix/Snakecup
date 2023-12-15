@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body,html{
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+
+        }
+        #app{
+            height:100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main{
+            flex: 1;
+        }
+
+        .footer{
+            width: auto;
+            height: auto;
+            display: flex;
+            flex-direction: row;
+            background-color: #e5e5e5;
+        }
+
+        .tab-item{
+            flex: 1;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tab-item p {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .tab-item p.active-p{
+            color:#12a0ef;
+        }
+
+        .tab-icon{
+            width: 28px;
+            height: 28px;
+            background-size: 28px;
+            align-items: center;
+        }
+
+        .header-content{
+            height:44px;
+            background-color: #e5e5e5;
+            line-height: 44px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .main{
+            flex:1;
+            display: flex;
+            flex-direction: row;
+        }
+        .scanner{
+            flex:1;
+            height: 64px;
+            width: 64px;
+            border: 0;
+            align-items: center;
+            background-size: 64px;
+        }
+        .logo{
+            flex:1;
+            height: 300px;
+            width: 400px;
+            align-items: center;
+            background-color:#fff;
+        }
+        .function_title{
+            color: #12a0ef;
+        }
+        .infochart{
+            height: 300px;
+            width: 400px;
+            align-items: center;
+            background-color:#666;
+            
+        }
+    </style>
+</head>
+<body>
+        <br>
+        <br>
+        <br>
+        <div class="main">
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="scanner">
+                <!--button type="button" id = "scannerbutton" onclick="scanner()">Scanner</button-->
+                <input type="image" src="../image/scanner.png" onclick = "scanner()">
+                <p class="function_title">scann your medicine</p>
+            </div>
+            <div class="datacheck">
+                <input type="image" src="../image/check.png" onclick = "check()">
+                <p class="function_title">Check your Med Info</p>
+                <!--button type="button" id = "checkbutton" onclick="check()">DataCheck</button-->
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="infochart">
+            <!--img src="../image/logo/Snakecup.png" alt="logo"-->
+            <!--你在这个区域插入你画的UI的那个评论栏-->
+        </div>
+    <!--div class = "header">Snakecup raw demo</div-->
+    <div class = "container">
+    </div>
+
+</body>
+<script src = "../script/ttst.js"></script>
+</html>

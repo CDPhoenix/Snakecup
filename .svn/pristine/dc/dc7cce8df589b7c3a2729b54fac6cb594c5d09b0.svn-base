@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./css/test.css">
+        <title>Welcome,dawalishi</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class = "box" id = "box1">
+                <br>
+                <br>
+                <br>
+                <br>
+                <button type="button" id = "scannerbutton" onclick="scanner()">Scanner</script></button>
+            </div>
+            <!--注释-->
+            <div class="list" id = "list1">
+                <ul>
+                    <li>ListA</li>
+                    <li>ListB</li>
+                    <li>ListC</li>
+                    <li>ListD</li>
+                    <li>ListE</li>
+                </ul>
+            </div>
+            <p><strong>This is paragraph1</strong></p>
+            <p>This is paragraph2</p>
+            <a href="https://baidu.com" target = "_blank">Link_s</a>
+            <!--list-->
+            <ul><!--无序列表-->
+                <li>List Item 01</li>
+                <li>List Item 02</li>
+                <li>List Item 03</li>
+                <li>List Item 04</li>
+            </ul>
+            <ol><!--有序列表-->
+                <li>List Item 01</li>
+                <li>List Item 02</li>
+                <li>List Item 03</li>
+                <li>List Item 04</li>
+            </ol>
+            <!--表格-->
+            <table style="width: auto;">
+                <thead>
+                    <tr>
+                        <!--表头，其实就是列的index-->
+                        <th>FirstName</th>
+                        <th>LastName</th>
+                        <th>Age</th>
+                        <th>email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><!--表格数据，其实就是填行-->>
+                        <td>Phoenix</td>
+                        <td>WANG</td>
+                        <td>21</td>
+                        <td>20074734d@connect.polyu.hk</td>
+                    </tr>
+                    <tr>
+                        <td>Aurora</td>
+                        <td>WANG</td>
+                        <td>21</td>
+                        <td>20074734d@connect.polyu.hk</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br><!--空白分割-->
+            <br>
+            <hr><!--画水平线-->
+            <!--表单Forms-->
+            <form action = "form.js" method="POST">
+                <div>
+                    <label>FirstName</label>
+                    <input type="text" name = "FirstName" placeholder="Enter first name">
+                </div>
+                <div>
+                    <label>LastName</label>
+                    <input type="text" name = "LastName" placeholder="Enter Last name">
+                </div>
+                <div>
+                    <label>Age</label>
+                    <input type="text" name = "Age" placeholder="Enter age">
+                </div>
+                <div>
+                    <label>email</label>
+                    <input type="text" name = "email" placeholder="Enter your email">
+                </div>
+                <input type="submit" name = "submit" value="Submit">
+            </form>
+            <button>BUTTON</button>
+            <img style = "width: 100vw;"src="./image/Drug Recycling Logo.jpg" alt="Not Found">
+            <blockquote>纵有疾风起，人生不言弃</blockquote><!--引用-->
+            <p><abbr title="The Hong Kong Polytechnic University">PolyU</abbr> is better than HKU</p>
+            <div style="margin-top:1000px"></div>
+        </div>
+        <div class= "block">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora laboriosam temporibus, 
+                rem nihil inventore ducimus repudiandae mollitia cumque asperiores, ipsum sit vitae 
+                eaque necessitatibus minima. Qui accusamus nemo doloribus veritatis.
+            </p>
+        </div>
+        <div class= "block">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora laboriosam temporibus, 
+                rem nihil inventore ducimus repudiandae mollitia cumque asperiores, ipsum sit vitae 
+                eaque necessitatibus minima. Qui accusamus nemo doloribus veritatis.
+            </p>
+        </div>
+        <div class= "block">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora laboriosam temporibus, 
+                rem nihil inventore ducimus repudiandae mollitia cumque asperiores, ipsum sit vitae 
+                eaque necessitatibus minima. Qui accusamus nemo doloribus veritatis.
+            </p>
+        </div>
+        <div id="main-block">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis officia velit 
+            blanditiis dolorem expedita omnis laudantium quibusdam eius architecto eveniet 
+            sit repudiandae animi provident vero, impedit libero totam quas eligendi.
+        </div>
+        <div id="side-bar">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam optio 
+            cumque ullam aperiam voluptatibus tempora repellendus quos commodi 
+            necessitatibus expedita nulla vitae harum atque, assumenda recusandae 
+            accusantium. Doloribus, natus at?
+        </div>
+    </body>
+    <script src="./script/ttst.js"></script>
+</html>

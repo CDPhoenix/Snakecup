@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--link rel="stylesheet" type = "text/css" href="./zpicker.css"/-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class = "header">JavaScript Practice</div>
+    <div class = "container">
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <link rel="stylesheet" href="LCalendar.css">
+    <button type="button" id = "dataaddbutton" onclick="dataadd()">DataAdd</button>
+    <button type="button" id = "scannerbutton" onclick="check()">DataCheck</button>
+    <button type="button" id = "scannerbutton" onclick="showDate()">DateCheck</button>
+    <button type = "button" id = "barcodeScanner" onclick = "barCode()">BarCode</button>
+    <button type = "button" id = "SelectScanner" onclick = "Select()">Select</button>
+</body>
+<script src="LCalendar.js"></script>
+<script>
+    var calendar = new LCalendar();
+    calendar.init({
+        'trigger': '#demo1',//标签id
+        'type': 'date',//date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择
+        'minDate':'1900-1-1',//最小日期 注意：该值会覆盖标签内定义的日期范围
+        'maxDate':'2016-3-18'//最大日期 注意：该值会覆盖标签内定义的日期范围    
+    });
+</script>
+<script>
+    
+    var dataadd = function(){
+    var jsonModel = '{"Name":' + 'AAA' + ',"Expiredate":' + 'BBBB'+',"Index":'+'0'+'}';
+    var model = api.require('model');
+    model.config({
+        appId:'A6108324211946',
+        appKey:'EE1F371D-1FC6-2B76-AE17-1C499EB7E877',
+        host:'https://d.apicloud.com'
+    });
+    model.insert({
+        class:'medicine',
+        value: {
+         Name : 'AA',
+         Expiredate:'2021.06.02',
+         Index:'0'
+    }
+    },function(ret,err){
+        if(ret){
+            alert(JSON.stringify(ret));
+        }else{
+            alert(JSON.stringify(err));
+        }
+    });  
+    }
+var check = function(){
+    var model = api.require('model');
+    model.config({
+        appId:'A6108324211946',
+        appKey:'EE1F371D-1FC6-2B76-AE17-1C499EB7E877',
+        host:'https://d.apicloud.com'
+    });
+    var query = api.require('query');
+    query.createQuery(function(ret,err){
+        if(ret){
+            //alert(JSON.stringify(ret.qid));
+            model.findAll({
+                class:"medicine",
+                qid:ret.qid
+            },function(ret,err){
+                if (ret){
+                    //alert(JSON.stringify(ret));
+                    for (i = 0;i<ret.length;i++){
+                        Expiredate = ret[i].Expiredate;
+                        var flag = 0;
+                        var year = new Array();
+                        var month = new Array();
+                        var day = new Array();
+                        for(j =  0;j<Expiredate.length;j++){
+                            if(Expiredate[j] == '.'){
+                                flag = flag + 1;
+                                continue;
+                            }
+                            if(flag == 0){
+                                year.push(Expiredate[j]);
+                            }else if(flag == 1){
+                                month.push(Expiredate[j]);
+                            }else if(flag == 2){
+                                day.push(Expiredate[j]);
+                            }
+                        }
+                        year = year.join('');
+                        month = month.join('');
+                        day = day.join('');
+                        year = parseInt(year);
+                        month = Number(month);
+                        day = Number(day);
+                        time = year*365 + month*30 + day
+                        //alert(month);
+                        var current = new Date();
+                        var cur_year = current.getFullYear();
+                        var cur_month = current.getMonth();
+                        var cur_day = current.getDate();
+                        time01 = cur_year*365 + cur_month*30 + cur_day;
+                        if(time < time01){
+                            info = "The expired drug: " + ret[i].Name + "\n" + "Expired Date: " + ret[i].Expiredate + "\n" + "Record index: " + ret[i].Index;
+                            alert(info);
+                        }
+                    }  
+                }else{
+                    alert(JSON.stringify(err));
+                }
+            });
+        }else{
+            alert(JSON.stringify(err));
+        }
+    });
+}
+
+var showDate = function(){
+    /*
+    var current = new Date();
+    var year = current.getFullYear();
+    var month = current.getMonth();
+    var day = current.getDate();
+    var DATE = String(year) + "." + String(month) + "." + String(day);
+    alert(DATE);*/
+    var model = api.require('model');
+    model.config({
+        appId:'A6108324211946',
+        appKey:'EE1F371D-1FC6-2B76-AE17-1C499EB7E877',
+        host:'https://d.apicloud.com'
+    });
+    var query = api.require('query');
+    query.createQuery(function(ret,err){
+        if(ret){
+            //alert(JSON.stringify(ret.qid));
+            model.findAll({
+                class:"medicine",
+                qid:ret.qid
+            },function(ret,err){
+                if (ret){
+                    //如果访问成功
+                    //var content = '0';
+                    var exist = 0;
+                    Indices = new Array();
+                    for(i = 0;i < ret.length;i++){
+                        if(ret[i].Index == content){
+                            exist = 1;//发现该药物
+                            Expiredate = ret[i].Expiredate;
+                            var flag = 0;//日期分割识别服
+                            var year = new Array();
+                            var month = new Array();
+                            var day = new Array();
+                            for(j =  0;j<Expiredate.length;j++){
+                                if(Expiredate[j] == '.'){
+                                    flag = flag + 1;
+                                    continue;
+                                }
+                                if(flag == 0){
+                                    year.push(Expiredate[j]);
+                                }else if(flag == 1){
+                                    month.push(Expiredate[j]);
+                                }else if(flag == 2){
+                                    day.push(Expiredate[j]);
+                                }
+                            }
+                            year = year.join('');
+                            month = month.join('');
+                            day = day.join('');
+                            year = parseInt(year);
+                            month = Number(month);
+                            day = Number(day);
+                            time = year*365 + month*30 + day
+                            //alert(month);
+                            var current = new Date();
+                            var cur_year = current.getFullYear();
+                            var cur_month = current.getMonth();
+                            var cur_day = current.getDate();
+                            time01 = cur_year*365 + cur_month*30 + cur_day;
+                            if(time < time01){
+                                info = "The expired drug: " + ret[i].Name + "\n" + "Expired Date: " + ret[i].Expiredate + "\n" + "Record index: " + ret[i].Index;
+                                alert(info);
+                                continue;
+                            }else{
+                                //exist = 1;
+                                continue;
+                            }
+                            //判断是否过期
+                        }//else{
+                            //添加药品
+                           // alert("No such item");
+                        //}
+                    }
+                    if(exist == 0){
+                        alert("No such item");
+                    }
+                    //alert(Indices);
+                }else{
+                    alert(JSON.stringify(err));
+                }
+            });
+        }else{
+            alert(JSON.stringify(err));
+        }
+    });
+}
+
+var barCode = function(){
+    api.ajax({
+
+url: 'https://api.upcitemdb.com/prod/trial/lookup?upc=048107154905',
+
+method: 'get',
+/*
+dataType: 'json', //该参数若不传，则默认为json
+
+data: {
+    headers: {
+      "Content-Type": "application/json"
+      //"user_key": "only_for_dev_or_pro",
+      //"key_type": "3scale"
+    },
+    gzip: true,
+    body: "{ \"upc\": \"048107154905\" }",
+
+}*/
+},function(ret,err){
+
+if (ret) {
+    var C = JSON.stringify(ret.items);//.offers.title;
+    //var A = JSON.parse(C);
+    var result = JSON.parse(C);
+    var B = JSON.stringify(result[0].offers);
+    var result2 = JSON.parse(B);
+    alert(JSON.stringify(result2[0].title));
+    //D = JSON.stringify(C);
+    //var B = JSON.parse(D);
+    //alert(JSON.stringify(B.description));
+
+} else {
+
+    api.alert({msg:JSON.stringify(err)});
+
+};
+
+});
+}
+</script>
+<!--script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script-->
+
+</html>
